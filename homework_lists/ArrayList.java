@@ -3,7 +3,11 @@ package homework_lists;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class ArrayList<T> {
+/**
+ *
+ * @param <T>
+ */
+public class ArrayList<T> implements List<T>{
 
     private T[] data;
 
@@ -37,12 +41,14 @@ public class ArrayList<T> {
         data = newData;
     }
 
+    @Override
     public void add(T value) {
         if (size == capacity - 1)
             grow();
         data[size++] = value;
     }
 
+    @Override
     public void add(T value, int index){
         if (size == capacity - 1)
             grow();
@@ -51,6 +57,7 @@ public class ArrayList<T> {
         data[index] = value;
     }
 
+    @Override
     public T get(int index) {
         T element = null;
         try {
@@ -61,6 +68,7 @@ public class ArrayList<T> {
         return element;
     }
 
+    @Override
     public void remove(T value){
         for (T t : data){
             if (t.equals(value))
@@ -68,12 +76,14 @@ public class ArrayList<T> {
         }
     }
 
+    @Override
     public void clear(){
         data = (T[]) new Object[DEFAULT_CAPACITY];
         size = 0;
         capacity = DEFAULT_CAPACITY;
     }
 
+    @Override
     public void sort(){
         Arrays.sort(data);
     }
