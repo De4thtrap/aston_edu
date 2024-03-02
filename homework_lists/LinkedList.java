@@ -3,6 +3,10 @@ package homework_lists;
 import java.util.Arrays;
 import java.util.Collection;
 
+/**
+ * Bidirectional list-based List implementation
+ * @param <T> Type of storing data
+ */
 public class LinkedList<T> implements List<T>{
 
     private int size = 0;
@@ -69,13 +73,15 @@ public class LinkedList<T> implements List<T>{
                 current = current.next;
                 currentIndex++;
             }
-        } else {
+        } else if (index >= size / 2) {
             current = last;
             int currentIndex = size - 1;
             while (currentIndex != index) {
                 current = current.prev;
                 currentIndex--;
             }
+        } else {
+            current = null;
         }
 
         return current;
@@ -87,6 +93,10 @@ public class LinkedList<T> implements List<T>{
 
         while (!current.data.equals(value)) {
             current = current.next;
+            if (current.equals(last)) {
+                current = null;
+                break;
+            }
         }
 
         return current;
@@ -115,6 +125,10 @@ public class LinkedList<T> implements List<T>{
             relink(new Node<>(value), last, null);
         } else {
             Node<T> current = find(index);
+
+            if (current == null)
+                return;
+
             relink(new Node<>(value), current.prev, current);
         }
 
@@ -129,8 +143,10 @@ public class LinkedList<T> implements List<T>{
     @Override
     public void remove(T value) {
         Node<T> removing = find(value);
-        relink(null, removing.prev, removing.next);
-        size--;
+        if (removing != null) {
+            relink(null, removing.prev, removing.next);
+            size--;
+        }
     }
 
     @Override
