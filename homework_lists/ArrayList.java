@@ -55,6 +55,7 @@ public class ArrayList<T> implements List<T>{
         for (int i = size; i > index; i--)
             data[i] = data[i-1];
         data[index] = value;
+        size++;
     }
 
     @Override
@@ -70,10 +71,14 @@ public class ArrayList<T> implements List<T>{
 
     @Override
     public void remove(T value){
-        for (T t : data){
-            if (t.equals(value))
-                t = null;
+        for (int i = 0; i < size - 1; i++) {
+            if (data[i].equals(value)) {
+                for (int j = i; j < size - 2; j++)
+                    data[j] = data[j + 1];
+                break;
+            }
         }
+        size--;
     }
 
     @Override
