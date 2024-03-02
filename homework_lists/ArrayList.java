@@ -98,6 +98,8 @@ public class ArrayList<T> implements List<T>{
 
     @Override
     public String toString() {
-        return Arrays.toString(data);
+        T[] filledData = (T[]) new Object[size];
+        System.arraycopy(data, 0, filledData, 0, size);
+        return Arrays.toString(filledData);
     }
 }
