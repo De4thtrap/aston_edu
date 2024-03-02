@@ -30,7 +30,7 @@ public class LinkedList<T> implements List<T>{
                 newNode.prev = current;
                 current = newNode;
             }
-            last = new Node<>((T) c[size]);
+            last = new Node<>((T) c[size - 1]);
             current.next = last;
             last.prev = current;
         }
@@ -41,8 +41,17 @@ public class LinkedList<T> implements List<T>{
             inserted.prev = left;
             inserted.next = right;
 
-            left.next = inserted;
-            right.prev = inserted;
+            if (left == null) {
+                first = inserted;
+            } else {
+                left.next = inserted;
+            }
+
+            if (right == null) {
+                last = inserted;
+            } else {
+                right.prev = inserted;
+            }
         } else {
             left.next = right;
             right.prev = left;
@@ -102,10 +111,8 @@ public class LinkedList<T> implements List<T>{
 
         if (index == 0) {
             relink(new Node<>(value), null, first);
-            first = first.prev;
         } else if (index == size - 1) {
             relink(new Node<>(value), last, null);
-            last = last.next;
         } else {
             Node<T> current = find(index);
             relink(new Node<>(value), current.prev, current);
@@ -151,6 +158,17 @@ public class LinkedList<T> implements List<T>{
         }
     }
 
+    @Override
+    public String toString() {
+        T[] values = (T[]) new Object[size];
+        Node<T> current = first;
+        for (int i = 0; i < size; i++) {
+            values[i] = current.data;
+            current = current.next;
+        }
+
+        return Arrays.toString(values);
+    }
 
     private static class Node<T> {
         T data;
