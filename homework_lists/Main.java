@@ -13,5 +13,14 @@ public class Main {
         arrayList.remove(25);
         arrayList.sort();
         System.out.println(arrayList);
+
+        List<Integer> linkedList = new LinkedList<>(java.util.List.of(array));
+
+        linkedList.add(3);
+        linkedList.add(22, 4);
+        System.out.println("The 7th element of arrayList: " + linkedList.get(7));
+        linkedList.remove(25);
+        linkedList.sort();
+        System.out.println(linkedList);
     }
 }
