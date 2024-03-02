@@ -37,7 +37,7 @@ public class ArrayList<T> implements List<T>{
      * @param collection member or an inheritor of JCF
      */
     public ArrayList(Collection<? extends T> collection){
-        Object[] c = collection.toArray();
+        T[] c = (T[]) collection.toArray();
         size = collection.size();
         capacity = size;
         data = (T[]) new Object[size];
@@ -65,7 +65,7 @@ public class ArrayList<T> implements List<T>{
 
     /**
      * Appends an element at the specified position of ArrayList
-     * all the elements next to the new shifts to the right
+     * all the elements next to the new one shifts to the right
      * @param value an element to add
      * @param index position to insert
      */
@@ -78,6 +78,11 @@ public class ArrayList<T> implements List<T>{
         size++;
     }
 
+    /**
+     * Get value of an element at the specified index
+     * @param index position of element
+     * @return value of ArrayList[index]
+     */
     @Override
     public T get(int index) {
         T element = null;
@@ -89,18 +94,26 @@ public class ArrayList<T> implements List<T>{
         return element;
     }
 
+    /**
+     * Removes first value entry from ArrayList if it exists
+     * all the elements next to the removed one shifts to the left
+     * @param value
+     */
     @Override
     public void remove(T value){
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             if (data[i].equals(value)) {
-                for (int j = i; j < size - 2; j++)
-                    data[j] = data[j + 1];
+                System.arraycopy(data, i + 1, data, i, size - i);
+                size--;
                 break;
             }
         }
-        size--;
     }
 
+    /**
+     * Resets all fields to default
+     * data becomes an empty array with default capacity
+     */
     @Override
     public void clear(){
         data = (T[]) new Object[DEFAULT_CAPACITY];
@@ -108,7 +121,9 @@ public class ArrayList<T> implements List<T>{
         capacity = DEFAULT_CAPACITY;
     }
 
-
+    /**
+     * Sorts values using Arrays.sort()
+     */
     @Override
     public void sort(){
         T[] filledData = (T[]) new Object[size];
@@ -117,6 +132,10 @@ public class ArrayList<T> implements List<T>{
         System.arraycopy(filledData, 0, data, 0, size);
     }
 
+    /**
+     * Overrides Object.toString()
+     * @return String representation of stored data
+     */
     @Override
     public String toString() {
         T[] filledData = (T[]) new Object[size];
