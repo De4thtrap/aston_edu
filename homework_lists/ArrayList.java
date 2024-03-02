@@ -5,7 +5,7 @@ import java.util.Collection;
 
 /**
  *
- * @param <T>
+ * @param <T> Type of storing data
  */
 public class ArrayList<T> implements List<T>{
 
@@ -31,7 +31,6 @@ public class ArrayList<T> implements List<T>{
         capacity = size;
         data = (T[]) new Object[size];
         System.arraycopy(c, 0, data, 0, size);
-
     }
 
     private void grow() {
@@ -43,7 +42,7 @@ public class ArrayList<T> implements List<T>{
 
     @Override
     public void add(T value) {
-        if (size == capacity - 1)
+        if (size == capacity)
             grow();
         data[size++] = value;
     }
@@ -88,8 +87,17 @@ public class ArrayList<T> implements List<T>{
         capacity = DEFAULT_CAPACITY;
     }
 
+
     @Override
     public void sort(){
-        Arrays.sort(data);
+        T[] filledData = (T[]) new Object[size];
+        System.arraycopy(data, 0, filledData, 0, size);
+        Arrays.sort(filledData);
+        System.arraycopy(filledData, 0, data, 0, size);
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(data);
     }
 }
