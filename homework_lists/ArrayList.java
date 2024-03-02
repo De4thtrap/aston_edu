@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
- *
+ * Array-based List implementation
  * @param <T> Type of storing data
  */
 public class ArrayList<T> implements List<T>{
@@ -17,14 +17,25 @@ public class ArrayList<T> implements List<T>{
 
     private int capacity = DEFAULT_CAPACITY;
 
+    /**
+     * Constructs a new empty ArrayList with a capacity of 10
+     */
     public ArrayList() {
         data = (T[]) new Object[capacity];
     }
 
+    /**
+     * Constructs a new empty ArrayList with a specified capacity
+     * @param initialCapacity capacity of Array
+     */
     public ArrayList(int initialCapacity) {
         data = (T[]) new Object[initialCapacity];
     }
 
+    /**
+     * Constructs a new filled ArrayList from specified Collection
+     * @param collection member or an inheritor of JCF
+     */
     public ArrayList(Collection<? extends T> collection){
         Object[] c = collection.toArray();
         size = collection.size();
@@ -40,6 +51,11 @@ public class ArrayList<T> implements List<T>{
         data = newData;
     }
 
+    /**
+     * Appends an element at the end of ArrayList
+     * Grows when size reach capacity
+     * @param value an element to add
+     */
     @Override
     public void add(T value) {
         if (size == capacity)
@@ -47,12 +63,17 @@ public class ArrayList<T> implements List<T>{
         data[size++] = value;
     }
 
+    /**
+     * Appends an element at the specified position of ArrayList
+     * all the elements next to the new shifts to the right
+     * @param value an element to add
+     * @param index position to insert
+     */
     @Override
     public void add(T value, int index){
-        if (size == capacity - 1)
+        if (size == capacity)
             grow();
-        for (int i = size; i > index; i--)
-            data[i] = data[i-1];
+        System.arraycopy(data, index, data, index + 1, size - index);
         data[index] = value;
         size++;
     }
