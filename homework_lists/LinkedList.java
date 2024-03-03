@@ -15,7 +15,7 @@ public class LinkedList<T> implements List<T>{
 
     private Node<T> last;
 
-    LinkedList() {
+    public LinkedList() {
         first = new Node<>();
         last = first;
     }
@@ -73,7 +73,7 @@ public class LinkedList<T> implements List<T>{
                 current = current.next;
                 currentIndex++;
             }
-        } else if (index >= size / 2) {
+        } else if (index >= size / 2 && index < size) {
             current = last;
             int currentIndex = size - 1;
             while (currentIndex != index) {
@@ -92,11 +92,10 @@ public class LinkedList<T> implements List<T>{
         Node<T> current = first;
 
         while (!current.data.equals(value)) {
-            current = current.next;
             if (current.equals(last)) {
-                current = null;
-                break;
+                return null;
             }
+            current = current.next;
         }
 
         return current;
@@ -137,7 +136,10 @@ public class LinkedList<T> implements List<T>{
 
     @Override
     public T get(int index) {
-        return find(index).data;
+        Node<T> found = find(index);
+        if (found != null)
+            return found.data;
+        return null;
     }
 
     @Override
