@@ -97,7 +97,7 @@ public class ArrayList<T> implements List<T>{
     /**
      * Removes first value entry from ArrayList if it exists
      * all the elements next to the removed one shifts to the left
-     * @param value
+     * @param value value to be removed
      */
     @Override
     public void remove(T value){

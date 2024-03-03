@@ -15,11 +15,18 @@ public class LinkedList<T> implements List<T>{
 
     private Node<T> last;
 
+    /**
+     * Constructs a new empty LinkedList with one node
+     */
     public LinkedList() {
         first = new Node<>();
         last = first;
     }
 
+    /**
+     * Constructs a new filled LinkedList from specified Collection
+     * @param collection member or an inheritor of JCF
+     */
     public LinkedList(Collection<? extends T> collection){
         Object[] c = collection.toArray();
         size = collection.size();
@@ -101,6 +108,11 @@ public class LinkedList<T> implements List<T>{
         return current;
     }
 
+    /**
+     * Appends an element at the end of LinkedList
+     * Grows when size reach capacity
+     * @param value an element to add
+     */
     @Override
     public void add(T value) {
 
@@ -115,6 +127,11 @@ public class LinkedList<T> implements List<T>{
         size++;
     }
 
+    /**
+     * Appends an element at the specified position of LinkedList
+     * @param value an element to add
+     * @param index position to insert
+     */
     @Override
     public void add(T value, int index) {
 
@@ -134,6 +151,11 @@ public class LinkedList<T> implements List<T>{
         size++;
     }
 
+    /**
+     * Get value of an element at the specified index
+     * @param index position of element
+     * @return value of LinkedList[index]
+     */
     @Override
     public T get(int index) {
         Node<T> found = find(index);
@@ -142,6 +164,10 @@ public class LinkedList<T> implements List<T>{
         return null;
     }
 
+    /**
+     * Removes first value entry from LinkedList if it exists
+     * @param value value to be removed
+     */
     @Override
     public void remove(T value) {
         Node<T> removing = find(value);
@@ -151,6 +177,9 @@ public class LinkedList<T> implements List<T>{
         }
     }
 
+    /**
+     * Resets LinkedList to one empty node
+     */
     @Override
     public void clear() {
         first = null;
@@ -158,6 +187,9 @@ public class LinkedList<T> implements List<T>{
         size = 0;
     }
 
+    /**
+     * Sorts values using Arrays.sort()
+     */
     @Override
     public void sort() {
         T[] values = (T[]) new Object[size];
@@ -176,6 +208,10 @@ public class LinkedList<T> implements List<T>{
         }
     }
 
+    /**
+     * Overrides Object.toString()
+     * @return String representation of stored data
+     */
     @Override
     public String toString() {
         T[] values = (T[]) new Object[size];
