@@ -1,0 +1,12 @@
+services:
+  db:
+    ports:
+      - 5432:5432
+    image: postgres:latest
+    container_name: hw3micro_db_container
+    environment:
+      - POSTGRES_DB=cart_db
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    volumes:
+      - .:/docker-entrypoint-initdb.d
