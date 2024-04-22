@@ -1,22 +1,27 @@
 package edu.aston.homework_microservice.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
+@Entity
+@Table(name = "cart")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class Cart {
-    private UUID cartId;
 
-    private UUID userId;
+    @Id
+    private String cartId;
 
-    private UUID productId;
+    private String userId;
+
+    private String productId;
 
     private int amount;
 }
