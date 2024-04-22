@@ -1,5 +1,6 @@
 package edu.aston.homework_microservice.dto;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +10,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CartDto {
+public class ResponseDto {
 
-    private String cartId;
+  private String userId;
 
-    private String productId;
-
-    private int amount;
+  private List<CartDto> carts;
 }

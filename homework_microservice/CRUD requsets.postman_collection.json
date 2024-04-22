@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "8205a9d7-920b-4862-85c8-f83fa1a82978",
+		"name": "CRUD requsets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10681764"
+	},
+	"item": [
+		{
+			"name": "add new cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\" : \"user1\",\r\n    \"productId\" : \"product1\",\r\n    \"productAmount\" : 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/cart/add",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"cart",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all carts by UserID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\" : \"user1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/cart/get",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"cart",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update amount by UserID&ProductID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\" : \"user1\",\r\n    \"productId\" : \"product1\",\r\n    \"productAmount\" : 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/cart/update",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"cart",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete all carts by UserID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\" : \"user1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/cart/delete",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"cart",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

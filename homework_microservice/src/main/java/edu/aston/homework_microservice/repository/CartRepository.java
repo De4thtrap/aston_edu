@@ -1,27 +1,18 @@
 package edu.aston.homework_microservice.repository;
 
 import edu.aston.homework_microservice.model.Cart;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
-
 @Repository
-public class CartRepository {
+public interface CartRepository extends CrudRepository<Cart, String> {
+  @Modifying
+  @Query("UPDATE Cart c SET c.amount = :productAmount WHERE c.userId = :userId AND c.productId = :productId")
+  void updateCartByUserIdAndProductId(String userId, String productId, int productAmount);
 
-    public CartRepository() {}
+  Iterable<Cart> findAllByUserId(String userId);
 
-    public UUID addCart(Cart cart) {
-        return UUID.randomUUID();
-    }
-
-    public List<Cart> getCartsByUserId(UUID userId) {
-        return Arrays.asList(new Cart());
-    }
-
-    public void updateAmount(Cart cart) {}
-
-    public void deleteCartsByUserId(UUID userId) {}
-
+  void deleteAllByUserId(String userId);
 }

@@ -9,11 +9,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CartDto {
+public class RequestDto {
 
-    private String cartId;
+  private String userId;
 
-    private String productId;
+  private String productId;
 
-    private int amount;
+  private int productAmount;
 }

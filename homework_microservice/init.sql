@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS cart
+(
+    cart_id VARCHAR(255) PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL,
+    product_id VARCHAR(255) NOT NULL,
+    amount INT NOT NULL
+);
