@@ -68,7 +68,7 @@
 		{
 			"name": "update amount by UserID&ProductID",
 			"request": {
-				"method": "PUT",
+				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",

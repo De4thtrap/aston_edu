@@ -30,7 +30,7 @@ public class CartController {
         return ResponseEntity.ok().body(service.getCarts(dto));
     }
 
-    @PutMapping("/update")
+    @PatchMapping("/update")
     ResponseEntity<HttpStatus> updateCart(@RequestBody RequestDto dto) {
         service.updateCart(dto);
         return ResponseEntity.ok().body(HttpStatus.OK);
